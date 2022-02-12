@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>windterm.portable</id>
+    <version>#REPLACE_VERSION#</version>
+    <owners>Verbalinsurection</owners>
+    <title>WindTerm (Portable)</title>
+    <authors>kingToolbox</authors>
+    <projectUrl>https://github.com/kingToolbox/WindTerm</projectUrl>
+    <projectSourceUrl>https://github.com/kingToolbox/WindTerm</projectSourceUrl>
+    <packageSourceUrl >https://github.com/Verbalinsurection/Chocolatey-WindTerm</packageSourceUrl>
+    <iconUrl>https://raw.githubusercontent.com/kingToolbox/WindTerm/master/images/WindTerm_icon_1024x1024.png</iconUrl>
+    <licenseUrl>https://github.com/kingToolbox/WindTerm/blob/master/src/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <docsUrl>https://kingtoolbox.github.io/</docsUrl>
+    <bugTrackerUrl>https://github.com/kingToolbox/WindTerm/issues</bugTrackerUrl>
+    <tags>terminal shell bash console ssh serial powershell telnet x11 sftp xterm wsl cmd</tags>
+    <summary>A Quicker and better SSH/Telnet/Serial/Shell/Sftp client for DevOps.</summary>
+    <description># WindTerm
+A Quicker and better SSH/Telnet/Serial/Shell/Sftp client for DevOps.
+
+_Hello WindTerm :rose:, hello world!_
+
+**We're just beginning! If you want a high performance text editor, you can try [WindEdit](https://www.github.com/kingToolbox/WindEdit/).**
+
+# License
+**Completely FREE for commercial and non-commercial use without limitations.**
+**All released source codes (except thirdparty directory) are provided under the terms of Apache-2.0 license.**
+
+# Introduction
+
+See [Intro Videos](https://kingtoolbox.github.io)
+
+# Download
+
+**Linux binary**, **MacOS binary** and **Windows binary**: https://github.com/kingToolbox/WindTerm/releases
+
+# Source Code
+
+WindTerm is a **partial** open source project, and the source will be gradually opened.
+
+Open source code includes, but is not limited to, the classes that can be used independently, such as functional, algorithms, gui widgets, etc., as well as functional libraries, such as network, protocols, etc., as well as all types that require open source according to the license.
+
+# Issues and feature requests
+
+Any issues and feature requests are welcome.
+
+Please click [issues](https://github.com/kingToolbox/WindTerm/issues) to commit an issue or a feature request.
+
+Please click [Discussion](https://github.com/kingToolbox/WindTerm/discussions) to discuss anything about SSH, SFtp, Shell(Linux shell, Windows cmd and powershell), Telnet, Serial and WindTerm.
+
+# Screenshots
+
+Main Window (zsh):
+
+![MainWindow](https://github.com/kingToolbox/WindTerm/blob/master/images/screenshots/WindTerm.png)
+
+Split views:
+
+![SplitView](https://github.com/kingToolbox/WindTerm/blob/master/images/screenshots/SplitView.png)
+
+DigeWhite Theme:
+
+![DigeWhite Theme](https://github.com/kingToolbox/WindTerm/blob/master/images/screenshots/WindTerm_DigeWhite_Theme.png)
+
+# Features
+
+### SSH, Telnet, Tcp, Shell, Serial
+- SSH v2, Telnet, Raw Tcp, Serial, Shell protocols implemented. [Intro Video](https://kingtoolbox.github.io/2020/01/22/new-session/)
+- Supports SSH auto execution when session authenticated.
+- Supports SSH ControlMaster.
+- Supports SSH ProxyCommand or ProxyJump. [Intro Video](https://kingtoolbox.github.io/2021/03/11/proxycommand/)
+- Supports SSH agent forwarding. [Intro Video](https://kingtoolbox.github.io/2020/08/22/ssh_agent_forwarding/)
+- Supports SSH auto login with password, public-key, keyboard-interactive, gssapi-with-mic. [Intro Video](https://kingtoolbox.github.io/2020/01/23/auto-login/)
+- Supports X11 forwarding. [Intro Video](https://kingtoolbox.github.io/2020/07/21/x11_forwarding/)
+- Supports direct/local port forwarding, reverse/remote port forwarding and dynamic port forwarding. [Intro Video](https://kingtoolbox.github.io/2020/07/21/port_forwarding/)
+- Supports XModem, YModem and ZModem. [Intro Video](https://kingtoolbox.github.io/tags/modem/)
+- Integrated sftp, scp client, supports download, upload, remove, rename, make new file/directory and so on. [Intro Video](https://kingtoolbox.github.io/tags/transfer/)
+- Integrated local file manager, supports move to, copy to, copy from, remove, rename, make new file/directory and so on.
+- Supports Windows Cmd, PowerShell and Cmd, PowerShell as administrator.
+- Supports Linux bash, zsh, powershell core and so on.
+- Supports MacOS bash, zsh, powershell core and so on.
+    </description>
+    <releaseNotes>#REPLACE_RELEASE_INFO#</releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
