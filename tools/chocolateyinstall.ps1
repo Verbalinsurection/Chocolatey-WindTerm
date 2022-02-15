@@ -3,6 +3,8 @@ $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 
 $checksum   = "#REPLACE_CHECKSUM#"
 $url        = "#REPLACE_URL#"
+$checksum64 = "#REPLACE_CHECKSUM_64#"
+$url64      = "#REPLACE_URL_64#"
 
 $packageArgs = @{
   packageName   = $env:ChocolateyPackageName
@@ -10,6 +12,9 @@ $packageArgs = @{
   url           = $url
   checksum      = $checksum
   checksumType  = 'sha256'
+  url64bit      = $url64
+  checksum64    = $checksum64
+  checksumType64= 'sha256'
   validExitCodes= @(0, 3010, 1641)
 }
 

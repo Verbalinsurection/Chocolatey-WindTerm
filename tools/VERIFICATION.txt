@@ -6,6 +6,7 @@ mention you are the author of the software.
 1.  Download the zip:
 
     x32: #REPLACE_URL#
+    x64: #REPLACE_URL_64#
 
 2.  Calculate Checksum:
     
@@ -17,3 +18,4 @@ mention you are the author of the software.
 3.  Verify against Checksum:
 
     checksum32: #REPLACE_CHECKSUM#
+    checksum64: #REPLACE_CHECKSUM_64#

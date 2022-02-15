@@ -46,17 +46,24 @@ function GetGithubInfos {
   Write-Debug "Get Github infos: https://api.github.com/repos/$repo/releases?per_page=5"
   $releasePage = (Invoke-WebRequest "https://api.github.com/repos/$repo/releases?per_page=5" | ConvertFrom-Json)
   $releaseFiltered = ($releasePage | Select-Object tag_name, prerelease, html_url, assets | Where-Object {$_.prerelease -match "False"})[0] #| Out-GridView
-  $winAsset = $releaseFiltered.assets | Select-Object id, name, browser_download_url | Where-Object {$_.name -match "Windows"}
-  Write-Debug "  Find asset: $($winAsset.name)"
+  $winAsset32 = $releaseFiltered.assets | Select-Object id, name, browser_download_url | Where-Object {$_.name -match "Windows_Portable_x86_32.zip"}
+  $winAsset64 = $releaseFiltered.assets | Select-Object id, name, browser_download_url | Where-Object {$_.name -match "Windows_Portable_x86_64.zip"}
+  Write-Debug "  Find asset x86_32: $($winAsset32.name)"
+  Write-Debug "  Find asset x86_64: $($winAsset64.name)"
   $wc = [System.Net.WebClient]::new()
-  $pkgurl = $winAsset.browser_download_url
-  $FileHash = Get-FileHash -InputStream ($wc.OpenRead($pkgurl))
-  Write-Debug "  FileHash: $($FileHash.Hash)"
+  $pkgurl32 = $winAsset32.browser_download_url
+  $pkgurl64 = $winAsset64.browser_download_url
+  $FileHash32 = Get-FileHash -InputStream ($wc.OpenRead($pkgurl32))
+  $FileHash64 = Get-FileHash -InputStream ($wc.OpenRead($pkgurl64))
+  Write-Debug "  FileHash x86_32: $($FileHash32.Hash)"
+  Write-Debug "  FileHash x86_64: $($FileHash64.Hash)"
   return @{
     Version     = getNormVerion $releaseFiltered.tag_name
     ReleaseUrl  = $releaseFiltered.html_url
-    URL32       = $winAsset.browser_download_url
-    SHA32       = $FileHash.Hash
+    URL32       = $winAsset32.browser_download_url
+    SHA32       = $FileHash32.Hash
+    URL64       = $winAsset64.browser_download_url
+    SHA64       = $FileHash64.Hash
   }
 }
 
@@ -135,6 +142,8 @@ Write-Warning "Update available !"
 Write-Host "--------------------------------------------------"
 Write-Host "Url32 : $($latestRelease.URL32)"
 Write-Host "Sha32 : $($latestRelease.SHA32)"
+Write-Host "Url64 : $($latestRelease.URL64)"
+Write-Host "Sha64 : $($latestRelease.SHA64)"
 Write-Host "--------------------------------------------------"
 
 if(!$noPrompt) {
@@ -150,8 +159,8 @@ $backupedFiles = BackupFiles $filesToUpdate
 for ($index = 0; $index -lt $filesToUpdate.count; $index++) {
   Write-Debug "Update $($filesToUpdate[$index])"
   ReplaceInFile -FilePath $filesToUpdate[$index] `
-                -SrcText '#REPLACE_VERSION#', '#REPLACE_RELEASE_INFO#', '#REPLACE_URL#', '#REPLACE_CHECKSUM#' `
-                -TargetText $latestRelease.Version, $latestRelease.ReleaseUrl, $latestRelease.URL32, $latestRelease.SHA32
+                -SrcText '#REPLACE_VERSION#', '#REPLACE_RELEASE_INFO#', '#REPLACE_URL#', '#REPLACE_CHECKSUM#', '#REPLACE_URL_64#', '#REPLACE_CHECKSUM_64#' `
+                -TargetText $latestRelease.Version, $latestRelease.ReleaseUrl, $latestRelease.URL32, $latestRelease.SHA32, $latestRelease.URL64, $latestRelease.SHA64
 }
 
 ## Pack choco package ##
