@@ -4,7 +4,9 @@ param (
   [Alias('d')]
     [switch]$debug = $false,
   [Alias('np')]
-    [switch]$noPrompt = $false
+    [switch]$noPrompt = $false,
+  [Alias('v')]
+    [string]$fversion = [string]::Empty
 )
 if ($Debug) { $DebugPreference = 'Continue' }
 
@@ -43,9 +45,15 @@ function GetGithubInfos {
     [string]$repo
   )
 
-  Write-Debug "Get Github infos: https://api.github.com/repos/$repo/releases?per_page=5"
-  $releasePage = (Invoke-WebRequest "https://api.github.com/repos/$repo/releases?per_page=5" | ConvertFrom-Json)
-  $releaseFiltered = ($releasePage | Select-Object tag_name, prerelease, html_url, assets | Where-Object {$_.prerelease -match "False"})[0] #| Out-GridView
+  if ($fversion -eq [string]::Empty) {
+    Write-Debug "Get Github infos: https://api.github.com/repos/$repo/releases?per_page=5"
+    $releasePage = (Invoke-WebRequest "https://api.github.com/repos/$repo/releases?per_page=5" | ConvertFrom-Json)
+    $releaseFiltered = ($releasePage | Select-Object tag_name, prerelease, html_url, assets | Where-Object {$_.prerelease -match "False"})[0]
+  } else {
+    Write-Debug "Get Github infos: https://api.github.com/repos/$repo/releases for version $fversion"
+    $releasePage = (Invoke-WebRequest "https://api.github.com/repos/$repo/releases" | ConvertFrom-Json)
+    $releaseFiltered = ($releasePage | Select-Object tag_name, prerelease, html_url, assets | Where-Object {$_.tag_name -match $fversion})[0]
+  }
   $winAsset32 = $releaseFiltered.assets | Select-Object id, name, browser_download_url | Where-Object {$_.name -match "Windows_Portable_x86_32.zip"}
   $winAsset64 = $releaseFiltered.assets | Select-Object id, name, browser_download_url | Where-Object {$_.name -match "Windows_Portable_x86_64.zip"}
   Write-Debug "  Find asset x86_32: $($winAsset32.name)"
@@ -123,7 +131,7 @@ Write-Host "--------------------------------------------------"
 
 $packageId          = 'windterm.portable'
 $githubRepo         = 'kingToolbox/WindTerm'
-$filesToUpdate      = 'windterm.nuspec', 'tools/chocolateyinstall.ps1', 'tools/VERIFICATION.txt'
+$filesToUpdate      = 'windterm.nuspec', 'tools/chocolateyinstall.ps1'
 
 ## Get package and web version ##
 $latestRelease = GetGithubInfos $githubRepo

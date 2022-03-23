@@ -1,9 +1,11 @@
-$toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+$ErrorActionPreference = 'Stop'
 
-$oldDir = Get-ChildItem "$toolsDir" -recurse | Where-Object {$_.PSIsContainer -eq $true -and $_.Name -match "WindTerm_"}
+$installDir = Join-Path (Get-ToolsLocation) "Windterm"
+
+$oldDir = Get-ChildItem "$installDir" -recurse | Where-Object {$_.PSIsContainer -eq $true -and $_.Name -match "WindTerm.portable"}
 if($oldDir) {
-  $oldProfilesDir = "$toolsDir\$oldDir\profiles"
+  $oldProfilesDir = "$installDir\$oldDir\profiles"
   if (Test-Path -Path $oldProfilesDir) {
-    Copy-Item "$oldProfilesDir/" -Destination "$toolsDir/bck_profiles/" -Recurse
+    Copy-Item "$oldProfilesDir/" -Destination "$installDir/bck_profiles/" -Recurse
   }
 }

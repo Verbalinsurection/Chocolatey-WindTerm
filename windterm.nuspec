@@ -9,7 +9,7 @@
     <projectUrl>https://github.com/kingToolbox/WindTerm</projectUrl>
     <projectSourceUrl>https://github.com/kingToolbox/WindTerm</projectSourceUrl>
     <packageSourceUrl >https://github.com/Verbalinsurection/Chocolatey-WindTerm</packageSourceUrl>
-    <iconUrl>https://raw.githubusercontent.com/kingToolbox/WindTerm/master/images/WindTerm_icon_1024x1024.png</iconUrl>
+    <iconUrl>https://rawcdn.githack.com/kingToolbox/WindTerm/aa779b4b098307edadd9ce5a18a97bcf07a922d1/images/WindTerm_icon_1024x1024.png</iconUrl>
     <licenseUrl>https://github.com/kingToolbox/WindTerm/blob/master/src/LICENSE</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <docsUrl>https://kingtoolbox.github.io/</docsUrl>
@@ -31,10 +31,6 @@ _Hello WindTerm :rose:, hello world!_
 
 See [Intro Videos](https://kingtoolbox.github.io)
 
-# Download
-
-**Linux binary**, **MacOS binary** and **Windows binary**: https://github.com/kingToolbox/WindTerm/releases
-
 # Source Code
 
 WindTerm is a **partial** open source project, and the source will be gradually opened.
@@ -53,15 +49,15 @@ Please click [Discussion](https://github.com/kingToolbox/WindTerm/discussions) t
 
 Main Window (zsh):
 
-![MainWindow](https://github.com/kingToolbox/WindTerm/blob/master/images/screenshots/WindTerm.png)
+![MainWindow](https://rawcdn.githack.com/kingToolbox/WindTerm/aa779b4b098307edadd9ce5a18a97bcf07a922d1/images/screenshots/WindTerm.png)
 
 Split views:
 
-![SplitView](https://github.com/kingToolbox/WindTerm/blob/master/images/screenshots/SplitView.png)
+![SplitView](https://rawcdn.githack.com/kingToolbox/WindTerm/aa779b4b098307edadd9ce5a18a97bcf07a922d1/images/screenshots/SplitView.png)
 
 DigeWhite Theme:
 
-![DigeWhite Theme](https://github.com/kingToolbox/WindTerm/blob/master/images/screenshots/WindTerm_DigeWhite_Theme.png)
+![DigeWhite Theme](https://rawcdn.githack.com/kingToolbox/WindTerm/aa779b4b098307edadd9ce5a18a97bcf07a922d1/images/screenshots/WindTerm_DigeWhite_Theme.png)
 
 # Features
 
@@ -80,6 +76,10 @@ DigeWhite Theme:
 - Supports Windows Cmd, PowerShell and Cmd, PowerShell as administrator.
 - Supports Linux bash, zsh, powershell core and so on.
 - Supports MacOS bash, zsh, powershell core and so on.
+
+# Install location
+
+Folder : Chocolatey `Get-ToolsLocation`, default to `C:\tools` in "WindTerm\WindTerm.portable" subfolder.
     </description>
     <releaseNotes>#REPLACE_RELEASE_INFO#</releaseNotes>
   </metadata>
